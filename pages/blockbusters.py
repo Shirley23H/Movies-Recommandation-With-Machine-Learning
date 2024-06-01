@@ -14,10 +14,10 @@ from sklearn.decomposition import PCA
 import random
 
 # Load the datasets
-df_bl = pd.read_csv("https://github.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/blob/main/datasets/df_bl_final_290501.csv")
-df_bl_actor = pd.read_csv("https://github.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/blob/main/datasets/df_bl_actors.csv")
-tmdb_df_1 = pd.read_csv("https://github.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/blob/main/datasets/tmdb_df_1.csv")
-df_bl_genres = pd.read_csv("https://github.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/blob/main/datasets/df_bl_genres_1.csv")
+df_bl = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_bl_final_290501.csv")
+df_bl_actor = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_bl_actors.csv")
+tmdb_df_1 = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/tmdb_df_1.csv")
+df_bl_genres = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_bl_genres_1.csv")
 # Extract the list of actors
 actors_list = df_bl_actor["primaryName"].unique().tolist()
 actors_list.sort()  # Optional: Sort the list of actors
