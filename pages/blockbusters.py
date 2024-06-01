@@ -8,11 +8,10 @@ from sklearn.decomposition import PCA
 import random
 
 
-# IMPORTER LES DATAFRAMES UTILISES
-df_bl = pd.read_pickle("./datasets/df_bl.pkl.gz")
-df_bl_actor = pd.read_pickle("./datasets/df_bl_actor.pkl.gz")
-tmdb_df_1 = pd.read_pickle("./datasets/tmdb_df_1.pkl.gz")
-df_bl_genres = pd.read_pickle("./datasets/df_bl_genres.pkl.gz")
+df_bl = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_bl_final_290501.csv")
+df_bl_actor = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_bl_actors.csv")
+tmdb_df_1 = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/tmdb_df_1.csv")
+df_bl_genres = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_bl_genres_1.csv")
 
 
 
