@@ -6,6 +6,8 @@ from sklearn.neighbors import NearestNeighbors
 import requests
 from sklearn.decomposition import PCA
 import random
+import pickle
+import io
 import gzip
 
 # URLs of the pickle files on GitHub
