@@ -12,20 +12,34 @@ from sklearn.neighbors import NearestNeighbors
 import requests
 from sklearn.decomposition import PCA
 import random
+import pickle
+import io
+import gzip
 
+# URLs of the pickle files on GitHub
+df_fr_url = "https://github.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/blob/main/datasets/df_fr.pkl.gz"
+df_fr_actor_url = "https://github.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/blob/main/datasets/df_fr_actor.pkl.gz"
+tmdb_df_1_url = "https://github.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/blob/main/datasets/tmdb_df_1.pkl.gz"
+df_fr_genres_url = "https://github.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/blob/main/datasets/df_fr_genres.pkl.gz"
 
+# Function to download, decompress, and load pickle file
+def load_pickle_from_url(url):
+    response = requests.get(url)
+    if response.status_code == 200:
+        # Decompress the gzip content
+        decompressed_content = gzip.decompress(response.content)
+        # Load pickle file from the decompressed content
+        return pickle.loads(decompressed_content)
+    else:
+        # Print an error message if the request failed
+        print(f"Failed to download {url}, status code: {response.status_code}")
+        return None
 
-# Load pickle files from GitHub
-
-df_bl_url = "https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_bl.pkl.gz"
-df_bl_actor_url = "https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_bl_actor.pkl.gz"
-tmdb_df_1_url = "https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/tmdb_df_1.pkl.gz"
-df_bl_genres_url = "https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_bl_genres.pkl.gz"
-
-df_bl = pd.read_pickle(df_bl_url)
-df_bl_actor = pd.read_pickle(df_bl_actor_url)
-tmdb_df_1 = pd.read_pickle(tmdb_df_1_url)
-df_bl_genres = pd.read_pickle(df_bl_genres_url)
+# Load pickle files from URLs
+df_fr = load_pickle_from_url(df_fr_url)
+df_fr_actor = load_pickle_from_url(df_fr_actor_url)
+tmdb_df_1 = load_pickle_from_url(tmdb_df_1_url)
+df_fr_genres = load_pickle_from_url(df_fr_genres_url)
 
 
 
