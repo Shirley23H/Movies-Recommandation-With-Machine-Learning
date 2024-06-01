@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 import streamlit as st
 import numpy as np
 import pandas as pd
@@ -12,9 +6,6 @@ from sklearn.neighbors import NearestNeighbors
 import requests
 from sklearn.decomposition import PCA
 import random
-import pickle
-import io
-import gzip
 
 # URLs of the pickle files on GitHub
 df_fr_url = "https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_fr.pkl.gz"
@@ -45,29 +36,22 @@ tmdb_df_1 = load_pickle_from_url(tmdb_df_1_url)
 df_fr_genres = load_pickle_from_url(df_fr_genres_url)
 
 # Check if dataframes are loaded successfully
-if df_bl is None:
+if df_fr is None:
     st.error("Failed to load df_bl.")
-if df_bl_actor is None:
+if df_fr_actor is None:
     st.error("Failed to load df_bl_actor.")
 if tmdb_df_1 is None:
     st.error("Failed to load tmdb_df_1.")
-if df_bl_genres is None:
+if df_fr_genres is None:
     st.error("Failed to load df_bl_genres.")
 
 # Ensure dataframes are not None before proceeding
-if df_bl is not None and df_bl_actor is not None and tmdb_df_1 is not None and df_bl_genres is not None:
+if df_fr is not None and df_fr_actor is not None and tmdb_df_1 is not None and df_fr_genres is not None:
     # Extract the list of actors
     actors_list = df_bl_actor["primaryName"].unique().tolist()
     actors_list.sort()  # Optional: Sort the list of actors
-
-
-
-# Extract the list of actors
-actors_list = df_fr_actor["primaryName"].unique().tolist()
-actors_list.sort()  # Optional: Sort the list of actors
-predefined_genres = [""] + ["Action","Adventure","Animation","Biography","Comedy","Crime","Documentary","Drama","Family","Fantasy",
-"History","Horror","Music","Musical","Mystery","Romance","Sci-Fi","Sport","Thriller","War","Western"]
-
+    predefined_genres = [""] + ["Action","Adventure","Animation","Biography","Comedy","Crime","Documentary","Drama","Family","Fantasy",
+    "History","Horror","Music","Musical","Mystery","Romance","Sci-Fi","Sport","Thriller","War","Western"]
 # Streamlit setup
 st.set_page_config(
     page_title="Pop Creuse",
@@ -280,4 +264,3 @@ if submit_3 and selected_genre:  # Check if a genre is selected
                 st.write(f" - [{title}]({url1_imdb2})")
     else:
         st.write(f"Aucun film trouvé pour {selected_genre}.")
-
