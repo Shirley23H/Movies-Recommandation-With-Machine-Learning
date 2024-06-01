@@ -14,19 +14,16 @@ from sklearn.decomposition import PCA
 import random
 import pickle
 import io
+import gzip
 
-# URLs of the pickle files on GitHub
-df_bl_url = "https://github.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/raw/main/datasets/df_bl.pkl.gz"
-df_bl_actor_url = "https://github.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/raw/main/datasets/df_bl_actor.pkl.gz"
-tmdb_df_1_url = "https://github.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/raw/main/datasets/tmdb_df_1.pkl.gz"
-df_bl_genres_url = "https://github.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/raw/main/datasets/df_bl_genres.pkl.gz"
-
-# Function to download and load pickle file
+# Function to download, decompress, and load pickle file
 def load_pickle_from_url(url):
     response = requests.get(url)
     if response.status_code == 200:
-        # Load pickle file from the content
-        return pickle.load(io.BytesIO(response.content))
+        # Decompress the gzip content
+        decompressed_content = gzip.decompress(response.content)
+        # Load pickle file from the decompressed content
+        return pickle.loads(decompressed_content)
     else:
         # Print an error message if the request failed
         print(f"Failed to download {url}, status code: {response.status_code}")
@@ -38,11 +35,6 @@ df_bl_actor = load_pickle_from_url(df_bl_actor_url)
 tmdb_df_1 = load_pickle_from_url(tmdb_df_1_url)
 df_bl_genres = load_pickle_from_url(df_bl_genres_url)
 
-# Check if any of the pickle files failed to load
-if None in [df_bl, df_bl_actor, tmdb_df_1, df_bl_genres]:
-    print("One or more pickle files failed to load.")
-else:
-    print("Pickle files loaded successfully.")
 
 
 # Extract the list of actors
