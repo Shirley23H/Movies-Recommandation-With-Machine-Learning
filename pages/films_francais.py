@@ -14,10 +14,10 @@ from sklearn.decomposition import PCA
 import random
 
 # Load the datasets
-df_fr = pd.read_csv("https://github.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/blob/main/datasets/df_fr_290501.csv")
-df_fr_actor = pd.read_csv("https://github.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/blob/main/datasets/df_fr_actors.csv")
-tmdb_df_1 = pd.read_csv("https://github.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/blob/main/datasets/tmdb_df_1.csv")
-df_fr_genres = pd.read_csv("https://github.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/blob/main/datasets/df_fr_genres.csv")
+df_fr = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_fr_290501.csv")
+df_fr_actor = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_fr_actors.csv")
+tmdb_df_1 = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/tmdb_df_1.csv")
+df_fr_genres = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_fr_genres.csv")
 
 
 # Extract the list of actors
