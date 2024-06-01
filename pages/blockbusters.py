@@ -6,55 +6,19 @@ from sklearn.neighbors import NearestNeighbors
 import requests
 from sklearn.decomposition import PCA
 import random
-import pickle
-import io
-import gzip
 
-# URLs of the pickle files on GitHub
-df_bl_url = "https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_bl.pkl.gz"
-df_bl_actor_url = "https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_bl_actor.pkl.gz"
-tmdb_df_1_url = "https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/tmdb_df_1.pkl.gz"
-df_bl_genres_url = "https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_bl_genres.pkl.gz"
 
-# Function to download, decompress, and load pickle file
-def load_pickle_from_url(url):
-    response = requests.get(url)
-    if response.status_code == 200:
-        try:
-            # Decompress the gzip content
-            decompressed_content = gzip.decompress(response.content)
-            # Load pickle file from the decompressed content
-            return pickle.loads(decompressed_content)
-        except Exception as e:
-            st.write(f"Failed to load pickle from {url}: {e}")
-            return None
-    else:
-        st.write(f"Failed to download {url}, status code: {response.status_code}")
-        return None
+# IMPORTER LES DATAFRAMES UTILISES
+df_bl = pd.read_pickle("./datasets/df_bl.pkl.gz")
+df_bl_actor = pd.read_pickle("./datasets/df_bl_actor.pkl.gz")
+tmdb_df_1 = pd.read_pickle("./datasets/tmdb_df_1.pkl.gz")
+df_bl_genres = pd.read_pickle("./datasets/df_bl_genres.pkl.gz")
 
-# Load pickle files from URLs
-df_bl = load_pickle_from_url(df_bl_url)
-df_bl_actor = load_pickle_from_url(df_bl_actor_url)
-tmdb_df_1 = load_pickle_from_url(tmdb_df_1_url)
-df_bl_genres = load_pickle_from_url(df_bl_genres_url)
 
-# Check if dataframes are loaded successfully
-if df_bl is None:
-    st.error("Failed to load df_bl.")
-if df_bl_actor is None:
-    st.error("Failed to load df_bl_actor.")
-if tmdb_df_1 is None:
-    st.error("Failed to load tmdb_df_1.")
-if df_bl_genres is None:
-    st.error("Failed to load df_bl_genres.")
 
-# Ensure dataframes are not None before proceeding
-if df_bl is not None and df_bl_actor is not None and tmdb_df_1 is not None and df_bl_genres is not None:
-    # Extract the list of actors
-    actors_list = df_bl_actor["primaryName"].unique().tolist()
-    actors_list.sort()  # Optional: Sort the list of actors
-    predefined_genres = [""] + ["Action","Adventure","Animation","Biography","Comedy","Crime","Documentary","Drama","Family","Fantasy",
-    "History","Horror","Music","Musical","Mystery","Romance","Sci-Fi","Sport","Thriller","War","Western"]
+# Extract the list of actors
+actors_list = df_bl_actor["primaryName"].unique().tolist()
+actors_list.sort()  # Optional: Sort the list of actors
 
 # Streamlit setup
 st.set_page_config(
