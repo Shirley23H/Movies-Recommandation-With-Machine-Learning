@@ -16,10 +16,11 @@ import random
 
 
 # Load pickle files from GitHub
-df_bl_url = "https://github.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/raw/main/datasets/df_bl.pkl.gz"
-df_bl_actor_url = "https://github.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/raw/main/datasets/df_bl_actor.pkl.gz"
-tmdb_df_1_url = "https://github.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/raw/main/datasets/tmdb_df_1.pkl.gz"
-df_bl_genres_url = "https://github.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/raw/main/datasets/df_bl_genres.pkl.gz"
+
+df_bl_url = "https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_bl.pkl.gz"
+df_bl_actor_url = "https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_bl_actor.pkl.gz"
+tmdb_df_1_url = "https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/tmdb_df_1.pkl.gz"
+df_bl_genres_url = "https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_bl_genres.pkl.gz"
 
 df_bl = pd.read_pickle(df_bl_url)
 df_bl_actor = pd.read_pickle(df_bl_actor_url)
