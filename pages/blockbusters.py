@@ -16,6 +16,12 @@ import pickle
 import io
 import gzip
 
+# URLs of the pickle files on GitHub
+df_bl_url = "https://github.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/raw/main/datasets/df_bl.pkl.gz"
+df_bl_actor_url = "https://github.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/raw/main/datasets/df_bl_actor.pkl.gz"
+tmdb_df_1_url = "https://github.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/raw/main/datasets/tmdb_df_1.pkl.gz"
+df_bl_genres_url = "https://github.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/raw/main/datasets/df_bl_genres.pkl.gz"
+
 # Function to download, decompress, and load pickle file
 def load_pickle_from_url(url):
     response = requests.get(url)
