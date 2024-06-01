@@ -37,7 +37,6 @@ st.set_page_config(
 )
 
 # Background
-# Background
 page_bg_img = f"""
 <style>
 [data-testid="stAppViewContainer"] > .main {{
@@ -68,10 +67,10 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-list_film_deroulante_films = [""]+list(df_fr["originalTitle"])
+list_film_deroulante_films = [""] + list(df_fr["originalTitle"])
 
-# TITRE
-st.markdown("<h1 style='text-align: center; color: black;'>Films Français</h1>", unsafe_allow_html=True)
+predefined_genres = [""] + ["Action","Adventure","Animation","Biography","Comedy","Crime","Documentary","Drama","Family","Fantasy",
+"History","Horror","Music","Musical","Mystery","Romance","Sci-Fi","Sport","Thriller","War","Western"]
 
 # API settings
 url_api = "http://www.omdbapi.com/?i="
@@ -86,6 +85,9 @@ feature_weights[5] = 3
 feature_weights[6] = 1
 feature_weights[7:31] = 20
 feature_weights[31:] = 10
+
+# TITRE
+st.markdown("<h1 style='text-align: center; color: black;'>Blockbusters</h1>", unsafe_allow_html=True)
 
 # Extract only the relevant features for training
 X = df_fr.iloc[:, 2:]
@@ -104,7 +106,6 @@ X_pca_weighted = pca.fit_transform(X_weighted)
 # Step 4: Use NearestNeighbors with the transformed data
 nn = NearestNeighbors(n_neighbors=4)
 nn.fit(X_pca_weighted)
-
 
 with st.form("form_1"):
     st.subheader("Choisis le titre d'un film et clique sur 'Go !'")
@@ -151,7 +152,7 @@ if submit_1:
 with st.form("form_2"):
     st.subheader("Choisis un acteur / une actrice et clique sur 'Go !'")
     actor = st.selectbox("Acteurs / Actrices :", [""] + actors_list)
-    submit_2 = st.form_submit_button("Go !")
+    submit_2 = st.form_submit_button("Soumettre")
 
 if submit_2 and actor != "Choisis un acteur que tu aimes":
     filtered_ids = df_fr_actor["knownForTitles"][df_fr_actor["primaryName"].str.contains(actor, case=False, na=False)]
@@ -187,12 +188,11 @@ if submit_2 and actor != "Choisis un acteur que tu aimes":
                     else:
                         st.write("Pas d'affiche disponible.")
                 except requests.exceptions.RequestException as e:
-                    st.write(f"Erreur de récupération de données pour {title}: {e}")
+                    st.write(f"Erreur de récupération des données pour {title}: {e}")
 
                 st.write(f" - [{title}]({url1_imdb2})")
     else:
         st.write(f"Aucun film trouvé pour {actor}.")
-
 
 with st.form("form_3"):
     st.subheader("Choisis un genre et clique sur 'Go !'")
