@@ -13,18 +13,6 @@ import requests
 from sklearn.decomposition import PCA
 import random
 
-# Read CSV files
-df_bl = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_bl_final_290501.csv", on_bad_lines='skip')
-df_bl_actor = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_bl_actors.csv", on_bad_lines='skip')
-tmdb_df_1 = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/tmdb_df_1.csv", on_bad_lines='skip')
-df_bl_genres = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_bl_genres_1.csv", on_bad_lines='skip')
-
-# Convert DataFrames to pickle files
-df_bl.to_pickle("df_bl.pkl")
-df_bl_actor.to_pickle("df_bl_actor.pkl")
-tmdb_df_1.to_pickle("tmdb_df_1.pkl")
-df_bl_genres.to_pickle("df_bl_genres.pkl")
-
 # Load pickle files
 df_bl = pd.read_pickle("df_bl.pkl")
 df_bl_actor = pd.read_pickle("df_bl_actor.pkl")
