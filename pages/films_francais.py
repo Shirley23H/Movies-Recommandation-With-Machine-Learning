@@ -15,10 +15,10 @@ import random
 
 
 # Load pickle files
-df_fr = pd.read_pickle("df_fr.pkl.gz")
-df_fr_actor = pd.read_pickle("df_fr_actor.pkl.gz")
-tmdb_df_1 = pd.read_pickle("tmdb_df_1.pkl.gz")
-df_fr_genres = pd.read_pickle("df_fr_genres.pkl.gz")
+df_fr = pd.read_pickle("./pages/df_fr.pkl.gz")
+df_fr_actor = pd.read_pickle("./pages/df_fr_actor.pkl.gz")
+tmdb_df_1 = pd.read_pickle("./pages/tmdb_df_1.pkl.gz")
+df_fr_genres = pd.read_pickle("./pages/df_fr_genres.pkl.gz")
 
 
 # Extract the list of actors
