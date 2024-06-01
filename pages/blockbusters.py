@@ -53,6 +53,8 @@ if df_bl is not None and df_bl_actor is not None and tmdb_df_1 is not None and d
     # Extract the list of actors
     actors_list = df_bl_actor["primaryName"].unique().tolist()
     actors_list.sort()  # Optional: Sort the list of actors
+    predefined_genres = [""] + ["Action","Adventure","Animation","Biography","Comedy","Crime","Documentary","Drama","Family","Fantasy",
+    "History","Horror","Music","Musical","Mystery","Romance","Sci-Fi","Sport","Thriller","War","Western"]
 
 # Streamlit setup
 st.set_page_config(
