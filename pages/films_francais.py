@@ -14,11 +14,19 @@ from sklearn.decomposition import PCA
 import random
 
 
-# Load pickle files
-df_fr = pd.read_pickle("./pages/df_fr.pkl.gz")
-df_fr_actor = pd.read_pickle("./pages/df_fr_actor.pkl.gz")
-tmdb_df_1 = pd.read_pickle("./pages/tmdb_df_1.pkl.gz")
-df_fr_genres = pd.read_pickle("./pages/df_fr_genres.pkl.gz")
+
+# Load pickle files from GitHub
+df_bl_url = "https://github.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/raw/main/datasets/df_bl.pkl.gz"
+df_bl_actor_url = "https://github.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/raw/main/datasets/df_bl_actor.pkl.gz"
+tmdb_df_1_url = "https://github.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/raw/main/datasets/tmdb_df_1.pkl.gz"
+df_bl_genres_url = "https://github.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/raw/main/datasets/df_bl_genres.pkl.gz"
+
+df_bl = pd.read_pickle(df_bl_url)
+df_bl_actor = pd.read_pickle(df_bl_actor_url)
+tmdb_df_1 = pd.read_pickle(tmdb_df_1_url)
+df_bl_genres = pd.read_pickle(df_bl_genres_url)
+
+
 
 
 # Extract the list of actors
