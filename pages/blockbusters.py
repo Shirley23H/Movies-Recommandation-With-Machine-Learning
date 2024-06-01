@@ -13,11 +13,18 @@ import requests
 from sklearn.decomposition import PCA
 import random
 
-# Load the datasets
-df_bl = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_bl_final_290501.csv")
-df_bl_actor = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_bl_actors.csv")
-tmdb_df_1 = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/tmdb_df_1.csv")
-df_bl_genres = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_bl_genres_1.csv")
+# Load the datasets with error handling
+try:
+    df_bl = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_bl_final_290501.csv", on_bad_lines='skip')
+    df_bl_actor = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_bl_actors.csv", on_bad_lines='skip')
+    tmdb_df_1 = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/tmdb_df_1.csv", on_bad_lines='skip')
+    df_bl_genres = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_bl_genres_1.csv", on_bad_lines='skip')
+    
+    print("Datasets loaded successfully")
+except pd.errors.ParserError as e:
+    print(f"Error parsing the CSV file: {e}")
+except Exception as e:
+    print(f"An error occurred: {e}")
 # Extract the list of actors
 actors_list = df_bl_actor["primaryName"].unique().tolist()
 actors_list.sort()  # Optional: Sort the list of actors
