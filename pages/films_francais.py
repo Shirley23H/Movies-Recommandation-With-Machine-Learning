@@ -7,12 +7,23 @@ import requests
 from sklearn.decomposition import PCA
 import random
 
-# IMPORTER LES DATAFRAMES UTILISES
-df_fr = pd.read_pickle("./datasets/df_fr.pkl.gz")
-df_fr_actor = pd.read_pickle("./datasets/df_fr_actor.pkl.gz")
-tmdb_df_1 = pd.read_pickle("./datasets/tmdb_df_1.pkl.gz")
-df_fr_genres = pd.read_pickle("./datasets/df_fr_genres.pkl.gz")
+df_fr = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_fr_290501.csv")
+df_fr_actor = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_fr_actors.csv")
+tmdb_df_1 = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/tmdb_df_1.csv")
+df_fr_genres = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_fr_genres.csv")
 
+# Load the datasets with error handling
+try:
+    df_fr = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_fr_290501.csv", on_bad_lines='skip')
+    df_fr_actor = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_fr_actors.csv", on_bad_lines='skip')
+    tmdb_df_1 = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/tmdb_df_1.csv", on_bad_lines='skip')
+    df_fr_genres = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_fr_genres.csv", on_bad_lines='skip')
+
+    print("Datasets loaded successfully")
+except pd.errors.ParserError as e:
+    print(f"Error parsing the CSV file: {e}")
+except Exception as e:
+    print(f"An error occurred: {e}")
 
 
 # Extract the list of actors
