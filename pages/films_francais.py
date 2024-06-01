@@ -13,18 +13,30 @@ import requests
 from sklearn.decomposition import PCA
 import random
 
-# Load the datasets with error handling
 try:
+    # Read CSV files
     df_fr = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_fr_290501.csv", on_bad_lines='skip')
     df_fr_actor = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_fr_actors.csv", on_bad_lines='skip')
     tmdb_df_1 = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/tmdb_df_1.csv", on_bad_lines='skip')
     df_fr_genres = pd.read_csv("https://raw.githubusercontent.com/Shirley23H/Movies-Recommandation-With-Machine-Learning/main/datasets/df_fr_genres.csv", on_bad_lines='skip')
     
-    print("Datasets loaded successfully")
+    # Save to pickle files
+    df_fr.to_pickle("df_fr.pkl")
+    df_fr_actor.to_pickle("df_fr_actor.pkl")
+    tmdb_df_1.to_pickle("tmdb_df_1.pkl")
+    df_fr_genres.to_pickle("df_fr_genres.pkl")
+
+    print("Datasets loaded successfully and saved as pickle files.")
 except pd.errors.ParserError as e:
     print(f"Error parsing the CSV file: {e}")
 except Exception as e:
     print(f"An error occurred: {e}")
+
+# Load pickle files
+df_fr = pd.read_pickle("df_fr.pkl")
+df_fr_actor = pd.read_pickle("df_fr_actor.pkl")
+tmdb_df_1 = pd.read_pickle("tmdb_df_1.pkl")
+df_fr_genres = pd.read_pickle("df_fr_genres.pkl")
 
 
 # Extract the list of actors
